@@ -59,6 +59,23 @@ async function getProfileData() {
 }
 
 
+async function friendsListLoader({ params }) {
+  const responce = axios.post(`http://127.0.0.1:8000/users/friends_list/?page=${params.page_number}`)
+  .then(function (responce){
+    return responce.data
+  })
+  .catch(function (errors){
+    return false
+  })
+  const data = await responce
+  if (await responce){              
+    return data
+  }
+  else{
+    return redirect('/')
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const new_root = createBrowserRouter([
@@ -86,24 +103,13 @@ const new_root = createBrowserRouter([
           },
           {
             element: <FriendsListPage/>,
-            path: 'friendsList/',
-            loader: async function() {
-              const responce = axios.post('http://127.0.0.1:8000/users/friends_list/')
-              .then(function (responce){
-                return responce.data
-              })
-              .catch(function (errors){
-                return false
-              })
-              const data = await responce
-              if (await responce){              
-                return data
-              }
-              else{
-                return redirect('/')
-              }
-            },
+            path: 'friendsList/:page_number',
+            loader: friendsListLoader
           },
+          {
+            element: <FriendsListPage/>,
+            path: 'messages/:username',
+          }
         ]
       }
 

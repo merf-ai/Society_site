@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import classes from '../registration_page/reg_form.css'
 
 function FriendDataList({friendData, username}) {
-    const linkName = `../message/${username}`;
     const translateDict = new Map(
         [['sex', 'Пол'],
         ['first_name', 'Имя'],
@@ -28,7 +27,7 @@ function FriendDataList({friendData, username}) {
                 )
             } 
         </ul>
-        <Link to={linkName} style={{ verticalAlign: "middle", margin: "0px 0px"}}>
+        <Link to={`../messages/${username}`} style={{ verticalAlign: "middle", margin: "0px 0px"}}>
             Написать сообщение
         </Link>
       </div>

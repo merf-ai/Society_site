@@ -1,5 +1,5 @@
 from rest_framework.serializers import *
-from users.models import User
+from users.models import User, Message
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework import serializers
 from django.contrib.auth import authenticate
@@ -50,3 +50,10 @@ class CustomTokenSerializer(AuthTokenSerializer):
 
         attrs['user'] = user
         return attrs
+
+
+class MessageSerializer(ModelSerializer):
+
+    class Meta:
+        model = Message
+        fields = ('content', 'data_created')

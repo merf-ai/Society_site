@@ -1,13 +1,11 @@
-from .models import User, Friends
+from .models import User, Friends, Message
 from .extra_logic import EmailSenderMixin, user_urlsafe_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import Group
-from .serializers import UserSerializer
+from .serializers import UserSerializer, MessageSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
-from rest_framework.authtoken.models import Token
 from .extra_logic import CustomObtainAuthToken
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -143,6 +141,21 @@ class FriendsListView(ListAPIView):
         serializer_class = self.get_serializer_class()
         kwargs.setdefault('context', self.get_serializer_context())
         return serializer_class(*args, for_friends=True, **kwargs)
+    
+
+class MessageView(ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = MessageSerializer
+
+    def post(self, request, *args, **kwargs):
+        self.queryset = Message.objects.filter(
+            (Q(sender__username = request.user.username) and Q(reciever__username = kwargs['username']))
+            or
+            (Q(reciever__username = request.user.username) and Q(sender__username = kwargs['username']))) \
+            .values('content', 'data_created') \
+            .order_by('data_created')
+        return super().get(request, *args, **kwargs)
 
 class TestView(APIView):
 

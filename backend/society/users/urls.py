@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('isauth/', IsUserAuth.as_view()),
     path('profile_data/', ProfileData.as_view()),
+    path('messages/<str:username>', MessageView.as_view()),
 
     path('test/', TestView.as_view()),
 
