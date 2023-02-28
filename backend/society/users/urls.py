@@ -3,7 +3,7 @@ from django.urls import path
 
 urlpatterns = [
     path('reg/', Register.as_view()),
-    path('reg/success/<str:uid>/<str:token>/', VerifyEmail.as_view()), 
+    path('reg/success/<str:uid>/<str:token>/', VerifyEmail.as_view()),
     path('reg/user_delete/<str:uid>/<str:token>/', UserMistakeRegistration.as_view()),
 
     path('friends_list/', FriendsListView.as_view()),

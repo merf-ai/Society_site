@@ -109,14 +109,14 @@ const new_root = createBrowserRouter([
           },
           {
             element: <FriendsListPage/>,
-            path: 'friendsList/:page_number',
+            path: 'friendsList/page=:page_number',
             loader: friendsListLoader,
             errorElement: <ErrorPage />,
             
           },
           {
             element: <FriendsListPage/>,
-            path: 'messages/:username',
+            path: 'messages/username=:username',
           }
         ]
       }

@@ -6,8 +6,8 @@ import FriendDataList from "../../UI/friendsListPage/friendsList";
 function FriendsListPage(props) {
   const freindsList = useLoaderData();
   const param = useParams();
-  const num_next_page = Number(param.page_number) + 1
-  const num_prev_page = Number(param.page_number) - 1
+  const num_next_page = Number(param.page_number) + 1;
+  const num_prev_page = Number(param.page_number) - 1;
   
 
   return (
@@ -27,13 +27,13 @@ function FriendsListPage(props) {
         <div>
           {
             freindsList['previous'] ?
-            <Link to={`../friendsList/${num_prev_page}`}>Предыдущая страница</Link>
+            <Link to={`../friendsList/page=${num_prev_page}`}>Предыдущая страница</Link>
             :
             null
           }
           {
             freindsList['next']?
-            <Link to={`../friendsList/${num_next_page}`}>Следующая страница</Link>
+            <Link to={`../friendsList/page=${num_next_page}`}>Следующая страница</Link>
             :
             null
           }

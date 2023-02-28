@@ -1,11 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
-
-# Create your models here.
-
-    
 
 class User(AbstractUser):
     CHOICES = [
@@ -21,8 +17,16 @@ class User(AbstractUser):
 
 
 class Friends(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_sender')
-    reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reciever')
+    sender = models.ForeignKey(
+                                User,
+                                on_delete=models.CASCADE,
+                                related_name='user_sender'
+                                )
+    reciever = models.ForeignKey(
+                                User,
+                                on_delete=models.CASCADE,
+                                related_name='user_reciever'
+                                )
     is_accepted = models.BooleanField()
 
     class Meta:
@@ -30,14 +34,27 @@ class Friends(models.Model):
 
 
 class Posts(models.Model):
-    poster = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_poster')
+    poster = models.ForeignKey(
+                                User,
+                                on_delete=models.CASCADE,
+                                related_name='user_poster'
+                                )
     data_created = models.DateField(auto_now_add=True)
     description = models.CharField(max_length=1000)
     #photo = models.ImageField(blank=True)
 
+
 class Message(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_ms_sender')
-    reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_ms_reciever')
+    sender = models.ForeignKey(
+                                User,
+                                on_delete=models.CASCADE,
+                                related_name='user_ms_sender'
+                                )
+    reciever = models.ForeignKey(
+                                User,
+                                on_delete=models.CASCADE,
+                                related_name='user_ms_reciever'
+                                )
     content = models.CharField(max_length=200)
     data_created = models.DateField(auto_now_add=True)
 
