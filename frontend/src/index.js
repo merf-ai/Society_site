@@ -7,10 +7,11 @@ import LoginForm from './components/templates/loginPage/login_form';
 import RegPage from './components/templates/registration_page/registraion_form';
 import Nav from './components/nav';
 import ProfilePage from './components/templates/profilePage/profilePage';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import ProfileMenu from './components/profileMenu';
 import FriendsListPage from './components/templates/friendsListPage/friendsListPage';
 import { AuthProvider, AuthContext } from './components/AuthContext';
+import ErrorPage from './components/ErrorPage';
 axios.defaults.headers.post['Authorization'] = `Token ${localStorage.getItem('token')}`;
 
 async function redirectAuthUser () {
@@ -64,12 +65,17 @@ async function friendsListLoader({ params }) {
   .then(function (responce){
     return responce.data
   })
-  .catch(function (errors){
-    return false
+  .catch(function (error){
+    return error
   })
-  const data = await responce
-  if (await responce){              
+  const data = await responce;
+  if (!(data instanceof AxiosError)){              
     return data
+  }
+  const messageError = data['response']['data']['detail'];
+  if (messageError === 'Неправильная страница'){
+    data.message = 'Такой страницы не существует!';
+    throw data
   }
   else{
     return redirect('/')
@@ -104,7 +110,9 @@ const new_root = createBrowserRouter([
           {
             element: <FriendsListPage/>,
             path: 'friendsList/:page_number',
-            loader: friendsListLoader
+            loader: friendsListLoader,
+            errorElement: <ErrorPage />,
+            
           },
           {
             element: <FriendsListPage/>,
