@@ -1,42 +1,49 @@
 import React from "react";
-import classes from './reg_form.css'
+import classes from "./reg_form.css";
 
 function ErrorsList(props) {
-    const [li_state, set_li_state] = props.state 
+  const [li_state, set_li_state] = props.state;
 
-    let translate_map = new Map([
-        ['username', 'Логин'],
-        ['first_name', 'Имя'],
-        ['last_name', 'Фамилия'],
-        ['middle_name', 'Отчество'],
-        ['email', 'email'],
-        ['password', 'Пароль']
-    ])
+  let translate_map = new Map([
+    ["username", "Логин"],
+    ["first_name", "Имя"],
+    ["last_name", "Фамилия"],
+    ["middle_name", "Отчество"],
+    ["email", "email"],
+    ["password", "Пароль"],
+  ]);
 
-    let bu;
+  let bu;
 
-    if (li_state.length === 0){
-        bu = ''
-    }else if('success' === li_state){
-        bu = (<div className="errors_list_div_success"><p className="errors_list_p_success">Вы успешно зарегистрированы, подтвердите почту!</p></div>)
-    }else{
-        bu = (<div className="errors_list_div">
-        {li_state.map(li =>
-        <ul key={li} className="errors_list_ul">
-            <p key={li[0]} className='errors_list_p'> {translate_map.get(li[0])} </p>
-            {li[1].map(li => 
-            <li className="errors_list_li">{li}</li>
-            )}
-        </ul>
-            )}
-            </div>)  
-  }
-
-    return (
-      <div >
-        {bu}
+  if (li_state.length === 0) {
+    bu = "";
+  } else if ("success" === li_state) {
+    bu = (
+      <div className="errors_list_div_success">
+        <p className="errors_list_p_success">
+          Вы успешно зарегистрированы, подтвердите почту!
+        </p>
+      </div>
+    );
+  } else {
+    bu = (
+      <div className="errors_list_div">
+        {li_state.map((li) => (
+          <ul key={li} className="errors_list_ul">
+            <p key={li[0]} className="errors_list_p">
+              {" "}
+              {translate_map.get(li[0])}{" "}
+            </p>
+            {li[1].map((li) => (
+              <li className="errors_list_li">{li}</li>
+            ))}
+          </ul>
+        ))}
       </div>
     );
   }
 
-export default ErrorsList
+  return <div>{bu}</div>;
+}
+
+export default ErrorsList;
