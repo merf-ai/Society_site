@@ -8,6 +8,9 @@ def contain_invalid_symbols_in_username(value):
         for invalid_symbol in invalid_symbols:
             if invalid_symbol in value:
                 raise ValidationError('Логин содержит один из недопустимых символов: @, !, ., *, #')
+            
+
+
 
 
 class User(AbstractUser):
@@ -83,7 +86,10 @@ class Message(models.Model):
                                 related_name='user_ms_reciever'
                                 )
     content = models.CharField(max_length=200)
-    data_created = models.DateField(auto_now_add=True)
+    data_created = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        unique_together = [['sender', 'reciever']]
+    def save(self, *args, **kwargs):
+        if self.sender == self.reciever:
+            raise ValueError('Users cannot send media messages to themselves!')
+        return super().save(*args, **kwargs)
+

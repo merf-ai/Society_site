@@ -10,7 +10,8 @@ from .extra_logic import CustomObtainAuthToken
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from users.pagination import FriendsListPagination
-from django.db.models import Q
+from django.db.models import Q, F
+from rest_framework.pagination import PageNumberPagination
 from users.raw_sql import make_query_find_friends
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -157,20 +158,22 @@ class FriendsListView(ListAPIView):
         return serializer_class(*args, for_friends=True, **kwargs)
 
 
-class MessageView(ListAPIView):
+class MessageView(APIView, PageNumberPagination):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    serializer_class = MessageSerializer
+    page_size = 25
 
     def post(self, request, *args, **kwargs):
-
-        self.queryset = Message.objects.filter(
+        queryset = Message.objects \
+        .filter(
             (Q(sender__username = request.user.username) and Q(reciever__username = kwargs['username']))
             or
-            (Q(reciever__username = request.user.username) and Q(sender__username = kwargs['username']))) \
-            .values('content', 'data_created') \
-            .order_by('data_created')
-        return super().get(request, *args, **kwargs)
+            (Q(reciever__username = request.user.username) and Q(sender__username = kwargs['username']))
+        ) \
+        .values('content', 'data_created', 'sender__username') \
+        .order_by('data_created')
+        results = self.paginate_queryset(queryset, request, view=self)
+        return self.get_paginated_response(results)
 
 
 class TestView(APIView):

@@ -51,6 +51,7 @@ class CustomTokenSerializer(AuthTokenSerializer):
 
 
 class MessageSerializer(ModelSerializer):
+    username = serializers.CharField()
 
     class Meta:
         model = Message
