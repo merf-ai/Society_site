@@ -5,87 +5,25 @@ import reportWebVitals from "./reportWebVitals";
 import {
   createBrowserRouter,
   RouterProvider,
-  redirect,
 } from "react-router-dom";
 import LoginForm from "./components/templates/loginPage/login_form";
 import RegPage from "./components/templates/registration_page/registraion_form";
 import Nav from "./components/nav";
 import ProfilePage from "./components/templates/profilePage/profilePage";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import ProfileMenu from "./components/profileMenu";
 import FriendsListPage from "./components/templates/friendsListPage/friendsListPage";
 import { AuthProvider, AuthContext } from "./components/AuthContext";
 import ErrorPage from "./components/ErrorPage";
+import MessagePage from "./components/templates/messagesPage/messagePage";
+import { redirectAuthUser, getProfileData, getFriendList, getMessages} from "./loaders";
+
 axios.defaults.headers.post["Authorization"] = `Token ${localStorage.getItem(
   "token"
 )}`;
 
-async function redirectAuthUser() {
-  const token = localStorage.getItem("token");
 
-  if (!token) {
-    return null;
-  }
-  const data = axios
-    .post("http://127.0.0.1:8000/users/isauth/")
-    .then(function (responce) {
-      return true;
-    })
-    .catch(function (errors) {
-      return null;
-    });
 
-  if (data) {
-    return redirect("users/profile/");
-  } else {
-    return null;
-  }
-}
-
-async function getProfileData() {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return redirect("/");
-  }
-  const responce = axios
-    .post("http://127.0.0.1:8000/users/profile_data/")
-    .then(function (responce) {
-      return responce;
-    })
-    .catch(function (errors) {
-      return false;
-    });
-  const data = await responce;
-  if (data) {
-    return data.data;
-  } else {
-    return redirect("/");
-  }
-}
-
-async function friendsListLoader({ params }) {
-  const responce = axios
-    .post(
-      `http://127.0.0.1:8000/users/friends_list/?page=${params.page_number}`
-    )
-    .then(function (responce) {
-      return responce.data;
-    })
-    .catch(function (error) {
-      return error;
-    });
-  const data = await responce;
-  if (!(data instanceof AxiosError)) {
-    return data;
-  }
-  const messageError = data["response"]["data"]["detail"];
-  if (messageError === "Неправильная страница") {
-    data.message = "Такой страницы не существует!";
-    throw data;
-  } else {
-    return redirect("/");
-  }
-}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -115,12 +53,14 @@ const new_root = createBrowserRouter([
           {
             element: <FriendsListPage />,
             path: "friendsList/page=:page_number",
-            loader: friendsListLoader,
+            loader: getFriendList,
             errorElement: <ErrorPage />,
           },
           {
-            element: <FriendsListPage />,
+            element: <MessagePage />,
             path: "messages/username=:username",
+            loader: getMessages,
+            errorElement: <ErrorPage />,
           },
         ],
       },

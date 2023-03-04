@@ -14,6 +14,8 @@ from django.db.models import Q, F
 from rest_framework.pagination import PageNumberPagination
 from users.raw_sql import make_query_find_friends
 from django.core.exceptions import ObjectDoesNotExist
+from string import ascii_letters
+from random import choice
 
 # Create your views here.
 
@@ -166,12 +168,12 @@ class MessageView(APIView, PageNumberPagination):
     def post(self, request, *args, **kwargs):
         queryset = Message.objects \
         .filter(
-            (Q(sender__username = request.user.username) and Q(reciever__username = kwargs['username']))
-            or
-            (Q(reciever__username = request.user.username) and Q(sender__username = kwargs['username']))
+            (Q(sender__username = request.user.username) & Q(reciever__username = kwargs['username']))
+            |
+            (Q(reciever__username = request.user.username) & Q(sender__username = kwargs['username']))
         ) \
         .values('content', 'data_created', 'sender__username') \
-        .order_by('data_created')
+        .order_by('-data_created')
         results = self.paginate_queryset(queryset, request, view=self)
         return self.get_paginated_response(results)
 
@@ -179,5 +181,9 @@ class MessageView(APIView, PageNumberPagination):
 class TestView(APIView):
 
     def post(self, request):
-        print(request.user)
-        return Response({'message': '@@ять'})
+        messages = [''.join([choice(ascii_letters) for i in range(30)]) for a in range(30)]
+        user_ghoul = User.objects.get(username='ghoul')
+        user_hulio = User.objects.get(username='hulio')
+        for a in messages:
+            Message.objects.create(sender=user_ghoul, reciever=user_hulio, content=a)
+        return Response()

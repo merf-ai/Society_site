@@ -103,8 +103,8 @@ input.input_form:focus{
 .profile-menu-ul{
     display: inline-block;
     vertical-align: top;
-    margin-left: 100px;
     margin-top: 0px;
+    
 }
 
 .profile-menu-li{

@@ -8,9 +8,8 @@ import ExitLink from "./ExitLink";
 
 function Nav(props) {
   const authContext = useContext(AuthContext);
-  const token = localStorage.getItem('token');
   let menu;
-  const navigate = useNavigate();
+  
   if (authContext['isAuth'] === true) {
     menu = [
       {name: 'Регистрация', to: '/users/reg'},
@@ -35,7 +34,7 @@ function Nav(props) {
     
     return (
       <div >
-        <ul className="ul-nav">
+        <ul className="ul-nav" style={{position: 'fixed', top: '0px'}}>
             {
               menu.map(function (input){
                 if (input.name === 'Выход'){
@@ -55,7 +54,9 @@ function Nav(props) {
                 )
             }
         </ul>
+        <div style={{marginTop: '100px'}}>
         <Outlet></Outlet>
+        </div>
       </div>
     );
   }
