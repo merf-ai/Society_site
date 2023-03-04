@@ -123,8 +123,14 @@ input.input_form:focus{
     border-radius: 5px;
 }
 
+.message-send-button{
+    width: auto;
+}
 
-
+.flex-containter-center-elements{
+    display: flex;
+    justify-content: center;
+}
 
 @keyframes rotate {
     from {

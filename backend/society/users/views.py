@@ -178,6 +178,22 @@ class MessageView(APIView, PageNumberPagination):
         return self.get_paginated_response(results)
 
 
+class CreateNewMessage(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        reciever = User.objects.get(username=kwargs['reciever'])
+        content = request.data.get('message')
+        new_message = Message.objects.create(
+            reciever=reciever,
+            sender=request.user,
+            content=content
+        )
+        return Response({'content': content,
+                         'data_created':new_message.data_created,
+                         'sender__username': request.user.username})
+
 class TestView(APIView):
 
     def post(self, request):
