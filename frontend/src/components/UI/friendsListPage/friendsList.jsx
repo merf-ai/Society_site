@@ -21,7 +21,7 @@ function FriendDataList({ friendData, username }) {
         {Object.entries(friendData).map(function (li) {
           if (li[0] !== "username") {
             return (
-              <li>
+              <li key={li[0]}>
                 {translateDict.get(li[0])}: {li[1]}
               </li>
             );

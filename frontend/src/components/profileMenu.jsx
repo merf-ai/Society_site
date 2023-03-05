@@ -18,7 +18,7 @@ function ProfileMenu() {
     <div>
       <ul className="profile-menu-ul" style={{'position': 'fixed', 'left': '240px'}} ref={profileMenuRef}>
         {profileLinks.map((input) => (
-          <li className="profile-menu-li">
+          <li className="profile-menu-li" key={input[0]}>
             <Link className="profile-menu-a" to={input[1]}>
               {input[0]}
             </Link>

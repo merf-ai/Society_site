@@ -1,7 +1,7 @@
 def make_query_find_friends(userid: int, col: list[str],
                             is_accepted: bool) -> str:
     return f'''
-    SELECT 1 as id, {','.join(col)}
+    SELECT users_user.id as id, {','.join(col)}
     FROM users_friends
     JOIN users_user
     ON ((users_user.id = users_friends.sender_id)

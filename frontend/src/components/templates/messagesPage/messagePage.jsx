@@ -21,7 +21,9 @@ function MessagePage(props) {
 
 
   function messageCheck(message, ind, arr) {
-    const elem = <Message message={message} />;
+    const elem = <Message key={message.id} message={message} />;
+
+    delete message.id
 
     if (ind === 25) {
       return <div ref={ref}>{elem}</div>;
@@ -32,7 +34,6 @@ function MessagePage(props) {
 
   const sendMessage = function (e) {
     e.preventDefault();
-    console.log();
     
     const textMessage = textareaReg.current.value;
 

@@ -14,8 +14,8 @@ function FriendsListPage(props) {
       <ul style={{ listStyleType: "none" }}>
         {freindsList["results"].map(function (input) {
           return (
-            <li>
-              <FriendDataList friendData={input} username={input.username} />
+            <li key={input.username}>
+              <FriendDataList friendData={input} username={input.username}/>
             </li>
           );
         })}

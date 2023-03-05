@@ -62,6 +62,12 @@ const new_root = createBrowserRouter([
             loader: getMessages,
             errorElement: <ErrorPage />,
           },
+          {
+            element: <FriendsListPage />,
+            path: "people",
+            loader: getFriendList,
+            errorElement: <ErrorPage />,
+          }
         ],
       },
     ],

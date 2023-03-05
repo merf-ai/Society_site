@@ -39,12 +39,12 @@ function Nav(props) {
               menu.map(function (input){
                 if (input.name === 'Выход'){
                   return(
-                  <li className="li-nav">
+                  <li className="li-nav" key={input.name}>
                     <ExitLink to={input.to} name={input.name} className='link-nav'/> 
                   </li>)
                 }
                 return (
-                <li className="li-nav">
+                <li className="li-nav" key={input.name}>
                   <Link to={input.to} className='link-nav'> 
                     {input.name}
                   </Link>

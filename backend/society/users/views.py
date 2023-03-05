@@ -149,7 +149,7 @@ class FriendsListView(ListAPIView):
 
     def post(self, request, *args, **kwargs):
         str_query = make_query_find_friends(request.user.id,
-                                            ('sex', 'first_name', 'last_name', 'middle_name', 'username'),
+                                            ('sex', 'first_name', 'last_name', 'middle_name', 'username', ),
                                             True)
         self.queryset = Friends.objects.raw(str_query)
         return super().get(request, *args, **kwargs)
@@ -172,7 +172,7 @@ class MessageView(APIView, PageNumberPagination):
             |
             (Q(reciever__username = request.user.username) & Q(sender__username = kwargs['username']))
         ) \
-        .values('content', 'data_created', 'sender__username') \
+        .values('content', 'data_created', 'sender__username', 'id') \
         .order_by('-data_created')
         results = self.paginate_queryset(queryset, request, view=self)
         return self.get_paginated_response(results)

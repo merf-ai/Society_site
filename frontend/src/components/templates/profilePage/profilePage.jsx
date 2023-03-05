@@ -18,7 +18,7 @@ function ProfilePage() {
         {arr.map(function (input) {
           if (input[0] !== "is_auth") {
             return (
-              <li className="profile-menu-li">
+              <li className="profile-menu-li" key={input[0]}>
                 {translation_object[input[0]]} : {input[1]}
               </li>
             );

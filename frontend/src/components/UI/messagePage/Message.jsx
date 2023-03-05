@@ -7,9 +7,12 @@ export function Message({message}) {
             <ul>
                 {
                     Object.entries(message).map(input =>{
-                        return (<li>
+                      if (input[0] !== 'id'){
+                        return (<li key={input[0]}>
                             {input[0]} : {input[1]}
-                        </li>)})
+                        </li>)}
+                        })
+                      
                 }
             </ul>     
         </li>
