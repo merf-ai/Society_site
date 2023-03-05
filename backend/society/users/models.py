@@ -45,6 +45,9 @@ class User(AbstractUser):
     email_verified = models.BooleanField(default=False)
     REQUIRED_FIELDS = ["email", "sex"]
 
+    class Meta:
+        ordering = ['id']
+
 
 class Friends(models.Model):
     sender = models.ForeignKey(

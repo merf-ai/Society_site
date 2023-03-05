@@ -12,6 +12,7 @@ urlpatterns = [
     path('profile_data/', ProfileData.as_view()),
     path('messages/<str:username>', MessageView.as_view()),
     path('create_message/<str:reciever>', CreateNewMessage.as_view()),
+    path('people/', PeopleList.as_view()),
 
     path('test/', TestView.as_view()),
 

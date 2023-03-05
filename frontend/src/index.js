@@ -16,7 +16,8 @@ import FriendsListPage from "./components/templates/friendsListPage/friendsListP
 import { AuthProvider, AuthContext } from "./components/AuthContext";
 import ErrorPage from "./components/ErrorPage";
 import MessagePage from "./components/templates/messagesPage/messagePage";
-import { redirectAuthUser, getProfileData, getFriendList, getMessages} from "./loaders";
+import { redirectAuthUser, getProfileData, getFriendList, getMessages, getPeopleList} from "./loaders";
+import PeoplePage from "./components/peoplePage";
 
 axios.defaults.headers.post["Authorization"] = `Token ${localStorage.getItem(
   "token"
@@ -51,21 +52,21 @@ const new_root = createBrowserRouter([
             loader: getProfileData,
           },
           {
-            element: <FriendsListPage />,
-            path: "friendsList/page=:page_number",
+            element: <FriendsListPage patternNextPage='../friendsList/page='/>,
+            path: "friendsList/page=:page_number/",
             loader: getFriendList,
             errorElement: <ErrorPage />,
           },
           {
             element: <MessagePage />,
-            path: "messages/username=:username",
+            path: "messages/username=:username/",
             loader: getMessages,
             errorElement: <ErrorPage />,
           },
           {
-            element: <FriendsListPage />,
-            path: "people",
-            loader: getFriendList,
+            element: <PeoplePage />,
+            path: "people/_page=:page_number/",
+            loader: getPeopleList,
             errorElement: <ErrorPage />,
           }
         ],

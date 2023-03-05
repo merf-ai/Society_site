@@ -193,6 +193,27 @@ class CreateNewMessage(APIView):
         return Response({'content': content,
                          'data_created':new_message.data_created,
                          'sender__username': request.user.username})
+    
+
+class PeopleList(ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    pagination_class = FriendsListPagination
+    serializer_class = UserSerializer
+
+    def post(self, request, *args, **kwargs):
+        self.queryset = User.objects.all() \
+        .exclude(
+            Q(username=request.user.username) | Q(is_superuser=True)
+        )
+        return super().get(request, *args, **kwargs)
+
+    def get_serializer(self, *args, **kwargs):
+        serializer_class = self.get_serializer_class()
+        kwargs.setdefault('context', self.get_serializer_context())
+        return serializer_class(*args, for_friends=True, **kwargs)
+
+
 
 class TestView(APIView):
 
