@@ -13,34 +13,45 @@ from users.serializers import CustomTokenSerializer
 
 
 class UserNotFoundException(Exception):
-    '''Исключение, возникающее, когда пользователь не найден'''
+    """Исключение, возникающее, когда пользователь не найден"""
 
 
 class EmailSenderMixin:
     template_mail = None
     from_email = EMAIL_HOST_USER
     subject_message = None
-    verified_url = ''
+    verified_url = ""
 
     def send_mail_verify(self, request, to_email: str) -> None:
         try:
             user = User.objects.all().get(email=to_email)
         except:
             raise UserNotFoundException
-        url_verification = self.prepare_url_verification(request, user, self.verified_url)
-        html_message = render_to_string(self.template_mail, {'url_verification': url_verification,
-                                                            **self.get_extra_context_html_message(request=request, user=user)})
+        url_verification = self.prepare_url_verification(
+            request, user, self.verified_url
+        )
+        html_message = render_to_string(
+            self.template_mail,
+            {
+                "url_verification": url_verification,
+                **self.get_extra_context_html_message(request=request, user=user),
+            },
+        )
         plain_message = strip_tags(html_message)
-        send_mail(subject=self.subject_message, message=plain_message,
-                  recipient_list=[to_email], from_email=self.from_email,
-                  html_message=html_message)
+        send_mail(
+            subject=self.subject_message,
+            message=plain_message,
+            recipient_list=[to_email],
+            from_email=self.from_email,
+            html_message=html_message,
+        )
 
     def prepare_url_verification(self, request, user: User, *args) -> str:
         domain = get_current_site(request).domain
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
-        pattern_name = '/'.join(args)
-        return f'http://{domain}/{pattern_name}/{uid}/{token}'
+        pattern_name = "/".join(args)
+        return f"http://{domain}/{pattern_name}/{uid}/{token}"
 
     def get_extra_context_html_message(self, *args, **kwargs) -> dict:
         return {}

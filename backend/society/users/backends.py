@@ -9,7 +9,7 @@ UserModel = get_user_model()
 class UsernameOrEmailBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
-            user = User.objects.get(Q(username=username)|Q(email=username))
+            user = User.objects.get(Q(username=username) | Q(email=username))
             if user.check_password(password):
                 return user
         except User.DoesNotExist:

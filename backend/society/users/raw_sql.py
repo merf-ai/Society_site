@@ -1,6 +1,5 @@
-def make_query_find_friends(userid: int, col: list[str],
-                            is_accepted: bool) -> str:
-    return f'''
+def make_query_find_friends(userid: int, col: list[str], is_accepted: bool) -> str:
+    return f"""
     SELECT users_user.id as id, {','.join(col)}
     FROM users_friends
     JOIN users_user
@@ -8,4 +7,4 @@ def make_query_find_friends(userid: int, col: list[str],
     OR (users_user.id = users_friends.reciever_id))
     AND (users_user.id != {userid})
     WHERE (users_friends.sender_id = {userid} OR users_friends.reciever_id = {userid})
-    AND (is_accepted = {is_accepted});'''
+    AND (is_accepted = {is_accepted});"""
