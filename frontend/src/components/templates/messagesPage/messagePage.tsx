@@ -1,26 +1,27 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import classes from "../../UI/registration_page/reg_form.css";
 import { Message } from "../../UI/messagePage/Message";
+import { TypeDefaultPagination } from "../../../types/Pagination";
+import { TypeMessage } from "../../../types/modelTypes/message";
 
-function MessagePage(props) {
-  const data = useLoaderData();
-  const ref = useRef();
-  const textareaReg = useRef();
+function MessagePage() {
+  const data = useLoaderData() as TypeDefaultPagination;
+  const ref = useRef() as any;
+  const textareaReg = useRef(null) as any;
   const params = useParams();
   const [messages, setMessages] = useState(Array(...data["results"]).reverse());
   const [nextPage, setNextPage] = useState(data["next"]);
   const [isFetching, setIsFetching] = useState(false);
 
-  const scrollHandler = function (e) {
+  const scrollHandler = function (e: any) {
     if (e.target.documentElement.scrollTop < 100 && nextPage) {
       setIsFetching(true);
     }
   };
 
 
-  function messageCheck(message, ind, arr) {
+  function messageCheck(message: TypeMessage, ind: number) {
     const elem = <Message key={message.id} message={message} />;
 
     delete message.id
@@ -32,7 +33,7 @@ function MessagePage(props) {
     return elem;
   }
 
-  const sendMessage = function (e) {
+  const sendMessage = function (e: React.MouseEvent) {
     e.preventDefault();
     
     const textMessage = textareaReg.current.value;
@@ -50,22 +51,27 @@ function MessagePage(props) {
             new_message
         ]);
     })
-    
-    textareaReg.current.value = '';
+
+    if (textareaReg.current.value) {
+      textareaReg.current.value = '';
+    }
   };
 
   useEffect(() => {
     if (isFetching) {
-      const responce = axios
+      if (nextPage) {
+        const responce = axios
         .post(nextPage)
         .then((responce) => {
-          responce = responce.data;
-          setNextPage(responce["next"]);
+          let response = responce.data;
+          setNextPage(response["next"]);
           ref.current.scrollIntoView();
-          setMessages([...responce["results"].reverse(), ...messages]);
+          setMessages([...response["results"].reverse(), ...messages]);
         })
         .catch(() => setNextPage(null))
         .finally(() => setIsFetching(false));
+
+      }
     }
   }, [isFetching]);
 
@@ -78,7 +84,7 @@ function MessagePage(props) {
   return (
     <div>
       <ul>
-        {messages.map((message, ind, arr) => messageCheck(message, ind, arr))}
+        {messages.map((message, ind, arr) => messageCheck(message, ind))}
       </ul>
 
       <div>
