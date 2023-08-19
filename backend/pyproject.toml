@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "society-site"
+version = "0.1.0"
+description = ""
+authors = ["merf-ai <nik.bolshakov.14@bk.ru>"]
+readme = "README.md"
+packages = [{include = "society_site"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asgiref = "3.5.2"
+django = "4.1.4"
+django-cors-headers = "3.13.0"
+django-debug-toolbar = "3.8.1"
+django-environ = "0.9.0"
+djangorestframework = "3.14.0"
+djangorestframework-simplejwt = "5.2.2"
+mysqlclient = "2.1.1"
+pip = "22.2.2"
+pyjwt = "2.6.0"
+pytz = "2022.6"
+setuptools = "63.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
