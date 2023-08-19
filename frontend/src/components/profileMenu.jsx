@@ -8,9 +8,9 @@ function ProfileMenu() {
   const margin = useResizeMarginRight(profileMenuRef);
   
   const profileLinks = [
-    ["Мои друзья", "friendsList/page=1/"],
+    ["Мои друзья", "friendsList/1/"],
     ["Сообщения", "#"],
-    ["Поиск людей", "people/_page=1/"],
+    ["Поиск людей", "people/1/"],
   ];
 
   const loginData = [{ label: "email", name: "email", key: "login" }];

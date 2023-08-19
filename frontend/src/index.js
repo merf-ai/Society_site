@@ -53,19 +53,19 @@ const new_root = createBrowserRouter([
           },
           {
             element: <FriendsListPage patternNextPage='../friendsList/page='/>,
-            path: "friendsList/page=:page_number/",
+            path: "friendsList/:page_number/",
             loader: getFriendList,
             errorElement: <ErrorPage />,
           },
           {
             element: <MessagePage />,
-            path: "messages/username=:username/",
+            path: "messages/:username/",
             loader: getMessages,
             errorElement: <ErrorPage />,
           },
           {
             element: <PeoplePage />,
-            path: "people/_page=:page_number/",
+            path: "people/:page_number/",
             loader: getPeopleList,
             errorElement: <ErrorPage />,
           }

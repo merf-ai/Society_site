@@ -29,7 +29,7 @@ function FriendDataList({ friendData, username }) {
         })}
       </ul>
       <Link
-        to={`../messages/username=${username}`}
+        to={`../messages/${username}/`}
         style={{ verticalAlign: "middle", margin: "0px 0px" }}
       >
         Написать сообщение
