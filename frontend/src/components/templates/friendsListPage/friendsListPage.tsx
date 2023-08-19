@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import classes from "../../UI/registration_page/reg_form.css";
 import FriendDataList from "../../UI/friendsListPage/friendsList";
 import SwitchPage from "../../UI/switchPage";
+import { TypeFriendListComponentProps } from "./types";
+import { TypePeople } from "../../../types/modelTypes/friends";
+import { TypeDefaultPagination } from "../../../types/Pagination";
 
-function FriendsListPage({ patternNextPage }) {
-  const freindsList = useLoaderData();
+function FriendsListPage({ patternNextPage } : TypeFriendListComponentProps) {
+  const freindsList = useLoaderData() as TypePeople & TypeDefaultPagination;
   const param = useParams();
   return (
     <div>

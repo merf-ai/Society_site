@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import InputRegForm from "../../UI/registration_page/input_registration_form";
 import Loader from "../../UI/registration_page/loader";
-import classes from "../../UI/registration_page/reg_form.css";
 import axios from "axios";
 import LogError from "../../UI/loginPage/errorLogin";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext";
+import { TypeAuthContex } from "./types";
 
 function LoginForm() {
-  const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext) as unknown as TypeAuthContex;
   const navigate = useNavigate();
   const loginData = [
     {
@@ -23,7 +23,7 @@ function LoginForm() {
   const [isListLoaded, setisListLoaded] = useState(false);
   const [isError, setErrorState] = useState(false);
 
-  function login(event) {
+  function login(event: React.MouseEvent): void {
     event.preventDefault();
     setisListLoaded(true);
     const responce = axios
