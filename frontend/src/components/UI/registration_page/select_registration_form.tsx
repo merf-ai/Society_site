@@ -1,11 +1,16 @@
 import React from "react";
-import classes from './reg_form.css'
+const css = require('./reg_form.css')
 
+interface ISelectRegFormProps {
+    name: string,
+    label: string,
+    select_state: any[]
+  }
 
-function SelectRegForm(props) {
+function SelectRegForm(props: ISelectRegFormProps) {
     const [select_state, set_select_state] = props.select_state
 
-    function change(event){
+    function change(event: any){
         set_select_state(event.target.value)
     }
 

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import classes from "./reg_form.css";
+const css = require('./reg_form.css')
 
-const InputRegForm = (props) => {
+interface IInputRegistrationProps {
+  name: string,
+  label: string
+  state: any[]
+}
+
+const InputRegForm = (props: IInputRegistrationProps) => {
   const [value, SetValue] = props.state;
 
-  function Change(event) {
+  function Change(event: any) {
     SetValue(event.target.value);
   }
 

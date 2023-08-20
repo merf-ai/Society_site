@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import classes from "../registration_page/reg_form.css";
+import { IFriendDataListProps } from "./types";
 
-function FriendDataList({ friendData, username }) {
+function FriendDataList({ friendData, username }: IFriendDataListProps) {
   const translateDict = new Map([
     ["sex", "Пол"],
     ["first_name", "Имя"],

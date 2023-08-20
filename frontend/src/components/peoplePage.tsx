@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import classes from './UI/nav/navCss.css';
 import FriendsListPage from "./templates/friendsListPage/friendsListPage";
 
-function PeoplePage(props) {
+const css = require('./UI/nav/navCss.css')
+
+function PeoplePage() {
   const loaderData = useLoaderData();
 
     

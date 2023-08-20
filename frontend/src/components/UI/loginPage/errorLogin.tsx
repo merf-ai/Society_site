@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import classes from "../registration_page/reg_form.css";
 
-function LogError(props) {
+function LogError(props: any) {
   return (
     <div>
       {props.state ? (

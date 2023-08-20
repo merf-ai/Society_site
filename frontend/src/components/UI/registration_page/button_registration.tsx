@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./reg_form.css";
+const css = require('./reg_form.css')
 
-function ButtonReg(props) {
+function ButtonReg(props: any) {
   return (
     <div>
       <p className="label_style">

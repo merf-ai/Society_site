@@ -1,6 +1,6 @@
 export type TypeDefaultPagination = {
     count: number;
     results: any[];
-    next: string | null;
-    previous: string | null;
+    next : string | undefined | null;
+    previous ?: string;
 }

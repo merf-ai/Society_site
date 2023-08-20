@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./reg_form.css";
+const css = require('./reg_form.css')
 
-function ErrorsList(props) {
+function ErrorsList(props: any) {
   const [li_state, set_li_state] = props.state;
 
   let translate_map = new Map([
@@ -28,13 +28,13 @@ function ErrorsList(props) {
   } else {
     bu = (
       <div className="errors_list_div">
-        {li_state.map((li) => (
+        {li_state.map((li: any) => (
           <ul key={li} className="errors_list_ul">
             <p key={li[0]} className="errors_list_p">
               {" "}
               {translate_map.get(li[0])}{" "}
             </p>
-            {li[1].map((li) => (
+            {li[1].map((li: any) => (
               <li className="errors_list_li">{li}</li>
             ))}
           </ul>

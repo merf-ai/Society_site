@@ -1,14 +1,19 @@
 import React, { useContext, useState } from "react";
-import classes from './UI/nav/navCss.css';
 import { Link, Outlet, redirect, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import ExitLink from "./ExitLink";
 
+type TypeLink = {
+  name: string,
+  to: string
+}
 
-function Nav(props) {
-  const authContext = useContext(AuthContext);
-  let menu;
+const css = require('./UI/nav/navCss.css')
+
+function Nav() {
+  const authContext = useContext(AuthContext) as any;
+  let menu: TypeLink[] = [];
   
   if (authContext['isAuth'] === true) {
     menu = [

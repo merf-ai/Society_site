@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import classes from './UI/nav/navCss.css';
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import axios from "axios";
 
-function ExitLink({to, name, className}) {
-  const context = useContext(AuthContext);
+const css = require('./UI//registration_page//reg_form.css')
+
+interface IExitLinkProps {
+  to : string,
+  name : string,
+  className ?: string
+}
+
+function ExitLink({to, name, className} : IExitLinkProps) {
+  const context = useContext(AuthContext) as any;
   function tokenDelete() {
     localStorage.removeItem('token');
     context['setUserCondition'](false);

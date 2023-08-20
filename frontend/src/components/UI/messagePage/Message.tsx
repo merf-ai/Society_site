@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { TypeMessage } from "../../../types/modelTypes/message";
 
-export function Message({message}) {
+interface IMessageProps {
+  message: TypeMessage
+}
+
+export function Message({message}: IMessageProps) {
   return (
     <div>
       <li>
