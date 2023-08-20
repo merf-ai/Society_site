@@ -1,15 +1,16 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import classes from "../../UI/registration_page/reg_form.css";
+import { TypePeople } from "../../../types/modelTypes/user";
+import { ITranslateUserDict } from "./types";
 
 function ProfilePage() {
-  const userData = useLoaderData();
+  const userData = useLoaderData() as TypePeople;
   const translation_object = {
     sex: "Пол",
     first_name: "Имя",
     last_name: "Фамилия",
     middle_name: "Отчество",
-  };
+  } as ITranslateUserDict;
   const arr = Object.entries(userData);
 
   return (
@@ -19,7 +20,7 @@ function ProfilePage() {
           if (input[0] !== "is_auth") {
             return (
               <li className="profile-menu-li" key={input[0]}>
-                {translation_object[input[0]]} : {input[1]}
+                {translation_object[input[0] as keyof ITranslateUserDict]} : {input[1]}
               </li>
             );
           }

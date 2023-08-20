@@ -3,7 +3,7 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import FriendDataList from "../../UI/friendsListPage/friendsList";
 import SwitchPage from "../../UI/switchPage";
 import { TypeFriendListComponentProps } from "./types";
-import { TypePeople } from "../../../types/modelTypes/friends";
+import { TypePeople } from "../../../types/modelTypes/user";
 import { TypeDefaultPagination } from "../../../types/Pagination";
 
 function FriendsListPage({ patternNextPage } : TypeFriendListComponentProps) {
