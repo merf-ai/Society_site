@@ -26,11 +26,11 @@ function RegPage() {
     { label: "Пароль", name: "password", state: useState(""), key: "password" },
   ];
 
-  const select_state = useState("Мужской");
-  const [li_state, set_li_state] = useState([]);
+  const selectState = useState("Мужской");
+  const [liState, setLiState] = useState<string | any[] | {}>([]);
   const [isListLoaded, setisListLoaded] = useState(false);
 
-  function createuser(event) {
+  function createuser(event: React.MouseEvent) {
     event.preventDefault();
     setisListLoaded(true);
     axios
@@ -41,14 +41,14 @@ function RegPage() {
         middle_name: inputlist[3].state[0],
         email: inputlist[4].state[0],
         password: inputlist[5].state[0],
-        sex: select_state[0],
+        sex: selectState[0],
       })
       .then(function (response) {
         let payload = response.data;
         if ("errors" in payload) {
-          set_li_state(Object.entries(payload.errors));
+          setLiState(Object.entries(payload.errors));
         } else {
-          set_li_state("success");
+          setLiState("success");
           inputlist[0].state[1]("");
           inputlist[1].state[1]("");
           inputlist[2].state[1]("");
@@ -66,7 +66,7 @@ function RegPage() {
         {isListLoaded ? (
           <Loader />
         ) : (
-          <ErrorsList state={[li_state, set_li_state]} key="errorList" />
+          <ErrorsList state={[liState, setLiState]} key="errorList" />
         )}
         {inputlist.map((input) => (
           <InputRegForm
@@ -79,7 +79,7 @@ function RegPage() {
         <SelectRegForm
           name={"sex"}
           label={"Пол"}
-          select_state={select_state}
+          select_state={selectState}
           key="sex"
         />
         <ButtonReg onClick={createuser} />

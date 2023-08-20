@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import classes from "./reg_form.css";
-
-function ButtonReg(props) {
+function ButtonReg() {
   const loginData = [{ label: "email", name: "email", key: "login" }];
   return (
     <div>
