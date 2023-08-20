@@ -3,12 +3,13 @@ import { AxiosError} from "axios";
 import { inArray } from "./operators";
 import axios from "axios";
 
-export function dataHandler(responce){
+
+export function dataHandler(responce: any){
     if (!(responce instanceof AxiosError)){
         return responce
     }
 
-    const messageError = responce["response"]["data"]["detail"];
+    const messageError = responce?.response?.data?.detail;
     //console.log(inArray(['Учетные данные не были предоставлены.', 'Недопустимый токен.'], messageError));
     if (inArray(['Учетные данные не были предоставлены.', 'Недопустимый токен.'], messageError)){
         return redirect('/')
@@ -19,7 +20,7 @@ export function dataHandler(responce){
     }
 }
 
-export async function sendDefaultPostRequest(url){
+export async function sendDefaultPostRequest(url: string){
     const responce = await axios.post(url)
     .then((input) => input.data)
     .catch((error) => error);

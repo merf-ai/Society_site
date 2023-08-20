@@ -18,15 +18,15 @@ import ErrorPage from "./components/ErrorPage";
 import MessagePage from "./components/templates/messagesPage/messagePage";
 import { redirectAuthUser, getProfileData, getFriendList, getMessages, getPeopleList} from "./loaders";
 import PeoplePage from "./components/peoplePage";
+import { createRoot } from 'react-dom/client';
 
 axios.defaults.headers.post["Authorization"] = `Token ${localStorage.getItem(
   "token"
 )}`;
 
+const container = document.getElementById('root')!;
+const root = createRoot(container);
 
-
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const new_root = createBrowserRouter([
   {

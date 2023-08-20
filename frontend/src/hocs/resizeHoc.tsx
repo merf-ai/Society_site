@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useResizeMarginRight = myRef => {
+export const useResizeMarginRight = (myRef: any) => {
     const [margin, setMargin] = useState(0)
   
     useEffect(() => {

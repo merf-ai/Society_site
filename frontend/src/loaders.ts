@@ -9,7 +9,7 @@ export async function redirectAuthUser() {
   if (!token) {
     return null;
   }
-  const data = axios
+  const data = await axios
     .post("http://127.0.0.1:8000/users/isauth/")
     .then(function (responce) {
       return true;
@@ -38,7 +38,7 @@ export async function getProfileData() {
     .catch(function (errors) {
       return false;
     });
-  const data = await responce;
+  const data = await responce as any;
   if (data) {
     return data.data;
   } else {
@@ -46,7 +46,7 @@ export async function getProfileData() {
   }
 }
 
-export async function getFriendList({ params }) {
+export async function getFriendList({ params } : any) {
   const responce = await sendDefaultPostRequest(
     `http://127.0.0.1:8000/users/friends_list/?page=${params.page_number}`
   );
@@ -54,7 +54,7 @@ export async function getFriendList({ params }) {
   return dataHandler(responce);
 }
 
-export async function getMessages({ params }) {
+export async function getMessages({ params } : any) {
   const responce = await sendDefaultPostRequest(
     `http://127.0.0.1:8000/users/messages/${params.username}`
   );
@@ -64,7 +64,7 @@ export async function getMessages({ params }) {
 
 /*Получаем список друзей, если пользователь не зарегистрирован,
   происходит редирек на страницу входа*/
-export async function getPeopleList({ params }){
+export async function getPeopleList({ params }: any){
   
   const responce = await sendDefaultPostRequest(`http://127.0.0.1:8000/users/people/?page=${params.page_number}`)
 

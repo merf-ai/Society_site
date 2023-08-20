@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import RegPage from "./components/templates/registration_page/registraion_form";
 import { Route, Routes } from "react-router-dom";
