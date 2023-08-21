@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Link, Outlet, redirect, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
-import ExitLink from "./ExitLink";
+import { AuthContext } from "../../components/AuthContext";
+import ExitLink from "../../components/ExitLink";
 
 type TypeLink = {
   name: string,
   to: string
 }
 
-const css = require('./UI/nav/navCss.css')
+const css = require('./index.css')
 
 function Nav() {
   const authContext = useContext(AuthContext) as any;

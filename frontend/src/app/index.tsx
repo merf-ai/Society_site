@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import LoginForm from "../pages/loginPage/login_form";
 import RegPage from "../pages/registration_page/registraion_form";
-import Nav from "../components/nav";
+import Nav from "../widgets/defaultNav/nav";
 import ProfilePage from "../pages/profilePage/profilePage";
 import axios from "axios";
 import ProfileMenu from "../components/profileMenu";

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import { Message } from "../../components/UI/messagePage/Message";
+import { Message } from "../../entities/message/oneMessage/Message";
 import { TypeDefaultPagination } from "../../types/Pagination";
 import { TypeMessage } from "../../types/modelTypes/message";
 
