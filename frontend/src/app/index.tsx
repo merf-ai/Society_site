@@ -6,18 +6,18 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import LoginForm from "../components/templates/loginPage/login_form";
-import RegPage from "../components/templates/registration_page/registraion_form";
+import LoginForm from "../pages/loginPage/login_form";
+import RegPage from "../pages/registration_page/registraion_form";
 import Nav from "../components/nav";
-import ProfilePage from "../components/templates/profilePage/profilePage";
+import ProfilePage from "../pages/profilePage/profilePage";
 import axios from "axios";
 import ProfileMenu from "../components/profileMenu";
-import FriendsListPage from "../components/templates/friendsListPage/friendsListPage";
+import FriendsListPage from "../pages/friendsListPage/friendsListPage";
 import { AuthProvider, AuthContext } from "../components/AuthContext";
 import ErrorPage from "../components/ErrorPage";
-import MessagePage from "../components/templates/messagesPage/messagePage";
+import MessagePage from "../pages/messagesPage/messagePage";
 import { redirectAuthUser, getProfileData, getFriendList, getMessages, getPeopleList} from "../loaders";
-import PeoplePage from "../components/peoplePage";
+import PeoplePage from "../pages/peoplePage/peoplePage";
 import { createRoot } from 'react-dom/client';
 
 axios.defaults.headers.post["Authorization"] = `Token ${localStorage.getItem(

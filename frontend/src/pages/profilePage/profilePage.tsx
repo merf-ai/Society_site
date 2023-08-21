@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { TypePeople } from "../../../types/modelTypes/user";
+import { TypePeople } from "../../types/modelTypes/user";
 import { ITranslateUserDict } from "./types";
 
 function ProfilePage() {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import FriendDataList from "../../UI/friendsListPage/friendsList";
-import SwitchPage from "../../UI/switchPage";
+import FriendDataList from "../../components/UI/friendsListPage/friendsList";
+import SwitchPage from "../../components/UI/switchPage";
 import { TypeFriendListComponentProps } from "./types";
-import { TypePeople } from "../../../types/modelTypes/user";
-import { TypeDefaultPagination } from "../../../types/Pagination";
+import { TypePeople } from "../../types/modelTypes/user";
+import { TypeDefaultPagination } from "../../types/Pagination";
 
 function FriendsListPage({ patternNextPage } : TypeFriendListComponentProps) {
   const freindsList = useLoaderData() as TypePeople & TypeDefaultPagination;

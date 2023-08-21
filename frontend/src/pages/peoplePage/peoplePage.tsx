@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import FriendsListPage from "./templates/friendsListPage/friendsListPage";
-
-const css = require('./UI/nav/navCss.css')
+import FriendsListPage from "../friendsListPage/friendsListPage";
 
 function PeoplePage() {
   const loaderData = useLoaderData();
