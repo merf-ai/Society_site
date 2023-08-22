@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const css = require('./index.css')
+
 function LogError(props: any) {
   return (
     <div>

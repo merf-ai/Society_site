@@ -1,5 +1,5 @@
 import React from "react";
-const css = require('./reg_form.css')
+const css = require('./index.css')
 
 function ErrorsList(props: any) {
   const [li_state, set_li_state] = props.state;

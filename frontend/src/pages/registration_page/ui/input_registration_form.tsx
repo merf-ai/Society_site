@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const css = require('./reg_form.css')
+const css = require('./index.css')
 
 interface IInputRegistrationProps {
   name: string,

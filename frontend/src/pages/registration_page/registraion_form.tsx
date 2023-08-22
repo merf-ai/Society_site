@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import InputRegForm from "../../components/UI/registration_page/input_registration_form";
-import SelectRegForm from "../../components/UI/registration_page/select_registration_form";
-import ButtonReg from "../../components/UI/registration_page/button_registration";
-import ErrorsList from "../../components/UI/registration_page/errors_list";
-import Loader from "../../components/UI/registration_page/loader";
+import InputRegForm from "./ui/input_registration_form";
+import SelectRegForm from "./ui/select_registration_form";
+import ButtonReg from "./ui/button_registration";
+import ErrorsList from "./ui/errors_list";
+import Loader from "./ui/loader";
 import axios from "axios";
 
 function RegPage() {

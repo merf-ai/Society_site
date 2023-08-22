@@ -1,5 +1,5 @@
 import React from "react";
-const css = require('./reg_form.css')
+const css = require('./index.css')
 
 interface ISelectRegFormProps {
     name: string,

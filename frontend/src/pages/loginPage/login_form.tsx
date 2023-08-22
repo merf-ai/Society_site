@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import InputRegForm from "../../components/UI/registration_page/input_registration_form";
-import Loader from "../../components/UI/registration_page/loader";
+import InputRegForm from "../registration_page/ui/input_registration_form";
+import Loader from "../registration_page/ui/loader";
 import axios from "axios";
-import LogError from "../../components/UI/loginPage/errorLogin";
+import LogError from "../../shared/ui/errors/ulError/errorLogin";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/AuthContext";
 import { TypeAuthContex } from "./types";
