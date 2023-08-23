@@ -4,7 +4,7 @@ import Loader from "../registration_page/ui/loader";
 import axios from "axios";
 import LogError from "../../shared/ui/errors/ulError/errorLogin";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../components/AuthContext";
+import { AuthContext } from "../../shared/context/authContext/AuthContext";
 import { TypeAuthContex } from "./types";
 
 function LoginForm() {

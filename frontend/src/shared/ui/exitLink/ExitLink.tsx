@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../../context/authContext/AuthContext";
 import axios from "axios";
 
-const css = require('./UI//registration_page//reg_form.css')
 
 interface IExitLinkProps {
   to : string,

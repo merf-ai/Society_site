@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, Outlet, redirect, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../../components/AuthContext";
-import ExitLink from "../../components/ExitLink";
+import { AuthContext } from "../../shared/context/authContext/AuthContext";
+import ExitLink from "../../shared/ui/exitLink/ExitLink";
 
 type TypeLink = {
   name: string,

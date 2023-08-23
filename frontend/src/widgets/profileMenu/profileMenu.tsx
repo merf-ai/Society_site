@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useResizeMarginRight } from "../hocs/resizeHoc";
+import { useResizeMarginRight } from "../../hocs/resizeHoc";
 
-const css = require('./UI//registration_page//reg_form.css')
+const css = require('./index.css')
 
 function ProfileMenu() {
   let profileMenuRef = useRef(null);
