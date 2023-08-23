@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TypeMessage } from "../../../types/modelTypes/message";
+import { TypeMessage } from "./type";
 
 interface IMessageProps {
   message: TypeMessage

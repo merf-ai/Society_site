@@ -16,7 +16,7 @@ import FriendsListPage from "../pages/friendsListPage/friendsListPage";
 import { AuthProvider, AuthContext } from "../shared/context/authContext/AuthContext";
 import ErrorPage from "../pages/errorPage/ErrorPage";
 import MessagePage from "../pages/messagesPage/messagePage";
-import { redirectAuthUser, getProfileData, getFriendList, getMessages, getPeopleList} from "../loaders";
+import { redirectAuthUser, getProfileData, getFriendList, getMessages, getPeopleList} from "./forLoader/loaders";
 import PeoplePage from "../pages/peoplePage/peoplePage";
 import { createRoot } from 'react-dom/client';
 

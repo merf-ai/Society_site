@@ -2,8 +2,10 @@ import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { Message } from "../../entities/message/oneMessage/Message";
-import { TypeDefaultPagination } from "../../types/Pagination";
-import { TypeMessage } from "../../types/modelTypes/message";
+import { TypeDefaultPagination } from "../../shared/types/Pagination";
+import { TypeMessage } from "../../entities/message/oneMessage/type";
+
+const css = require('./index.css')
 
 function MessagePage() {
   const data = useLoaderData() as TypeDefaultPagination;

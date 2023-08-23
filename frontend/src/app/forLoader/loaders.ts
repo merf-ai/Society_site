@@ -1,7 +1,7 @@
 import axios from "axios";
 import { redirect } from "react-router-dom";
 import { AxiosError } from "axios";
-import { dataHandler, sendDefaultPostRequest } from "./extra_logic/forLoaders";
+import { dataHandler, sendDefaultPostRequest } from "./forLoaders";
 
 export async function redirectAuthUser() {
   const token = localStorage.getItem("token");

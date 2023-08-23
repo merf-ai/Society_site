@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 import { AxiosError} from "axios";
-import { inArray } from "./operators";
+import { inArray } from "../../shared/operators/operators";
 import axios from "axios";
 
 

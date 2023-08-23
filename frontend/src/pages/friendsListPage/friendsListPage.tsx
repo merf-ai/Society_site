@@ -3,8 +3,8 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import FriendDataList from "../../entities/people/friendsList/friendsList";
 import SwitchPage from "../../shared/ui/pageSwitcher/switchPage";
 import { TypeFriendListComponentProps } from "./types";
-import { TypePeople } from "../../types/modelTypes/user";
-import { TypeDefaultPagination } from "../../types/Pagination";
+import { TypeDefaultPagination } from "../../shared/types/Pagination";
+import { TypePeople } from "../../entities/people/friendsList/types";
 
 function FriendsListPage({ patternNextPage } : TypeFriendListComponentProps) {
   const freindsList = useLoaderData() as TypePeople & TypeDefaultPagination;

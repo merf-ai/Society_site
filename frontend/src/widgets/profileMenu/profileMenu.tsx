@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useResizeMarginRight } from "../../hocs/resizeHoc";
+import { useResizeMarginRight } from "../../shared/hocs/resizeHoc";
 
 const css = require('./index.css')
 
